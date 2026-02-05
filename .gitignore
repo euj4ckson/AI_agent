@@ -1,0 +1,16 @@
+﻿# Ambiente virtual
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# VariÃ¡veis de ambiente
+.env
+
+# VS Code
+.vscode/
+
+# Git dir (separate)
+.gitdata/

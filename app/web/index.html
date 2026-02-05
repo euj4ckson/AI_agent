@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Modular AI Agent</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <main class="layout">
+      <aside class="sidebar">
+        <header class="brand">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="6" width="16" height="12" rx="2"/>
+              <circle cx="9" cy="13" r="1.5" fill="currentColor"/>
+              <circle cx="15" cy="13" r="1.5" fill="currentColor"/>
+              <path d="M9 6V4a3 3 0 0 1 6 0v2"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1>AI Agent</h1>
+            <p>Conversa, memória e RAG</p>
+          </div>
+        </header>
+
+        <section class="card">
+          <h2>Chats</h2>
+          <div class="chat-actions">
+            <button id="newChat" class="btn-primary">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+              Novo chat
+            </button>
+            <button id="deleteChat" class="btn-ghost danger">Excluir</button>
+          </div>
+          <div id="chatList" class="chat-list"></div>
+        </section>
+
+        <section class="card">
+          <h2>Memória</h2>
+          <div class="card-actions">
+            <button id="loadMemory" class="btn-ghost">Carregar</button>
+            <button id="clearChat" class="btn-ghost">Limpar</button>
+            <button id="exportChat" class="btn-ghost">Exportar</button>
+          </div>
+          <div id="memoryList" class="memory"></div>
+        </section>
+
+        <section class="card">
+          <h2>Documentos (RAG)</h2>
+          <textarea id="documentsInput" rows="4" placeholder="Cole documentos para indexar..."></textarea>
+          <button id="addDocuments" class="btn-primary">Adicionar</button>
+          <small id="documentsStatus" class="muted"></small>
+        </section>
+
+        <section class="card">
+          <h2>Configurações</h2>
+          <label class="toggle"><input id="autoScroll" type="checkbox" checked /><span>Auto-scroll</span></label>
+          <label class="toggle"><input id="showSteps" type="checkbox" checked /><span>Passos do agente</span></label>
+        </section>
+      </aside>
+
+      <section class="main">
+        <header class="topbar">
+          <div class="topbar-left">
+            <div class="header-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="6" width="16" height="12" rx="2"/>
+                <circle cx="9" cy="13" r="1.5" fill="currentColor"/>
+                <circle cx="15" cy="13" r="1.5" fill="currentColor"/>
+                <path d="M9 6V4a3 3 0 0 1 6 0v2"/>
+              </svg>
+            </div>
+            <div class="header-title">
+              <span class="header-name">AI Agent</span>
+              <span class="status-badge">
+                <span class="dot"></span>
+                <span id="statusText">Conectado</span>
+              </span>
+            </div>
+          </div>
+          <div class="topbar-actions">
+            <button id="quickHello" class="btn-pill">Olá</button>
+            <button id="quickRag" class="btn-pill">RAG</button>
+            <button id="quickTool" class="btn-pill">Tool</button>
+          </div>
+        </header>
+
+        <section class="chat">
+          <div id="messages" class="messages"></div>
+
+          <form id="chatForm" class="composer">
+            <div class="composer-inner">
+              <input id="messageInput" type="text" placeholder="Envie uma mensagem..." autocomplete="off" />
+              <button type="submit" class="send-btn" aria-label="Enviar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                </svg>
+              </button>
+            </div>
+          </form>
+          <p id="errorBanner" class="error hidden"></p>
+        </section>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
